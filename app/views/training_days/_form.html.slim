@@ -1,0 +1,12 @@
+= form_for @training_day do |f|
+  - if @training_day.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@training_day.errors.count, "error")} prohibited this training_day from being saved:"
+      ul
+        - @training_day.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :date
+    = f.date_select :date
+  .actions = f.submit

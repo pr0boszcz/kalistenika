@@ -1,0 +1,20 @@
+= form_for(@training) do |f|
+  - if @training.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@training.errors.count, "error")
+        |  prohibited this training from being saved:
+      ul
+        - @training.errors.full_messages.each do |message|
+          li
+            = message
+  .field
+    = f.label :name
+    br
+    = f.text_field :name
+  .field
+    = f.label :level
+    br
+    = f.text_field :level
+  .actions
+    = f.submit

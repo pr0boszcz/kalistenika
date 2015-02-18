@@ -1,0 +1,21 @@
+h1 Listing training_days
+
+table
+  thead
+    tr
+      th Date
+      th
+      th
+      th
+
+  tbody
+    - @training_days.each do |training_day|
+      tr
+        td = training_day.date
+        td = link_to 'Show', training_day
+        td = link_to 'Edit', edit_training_day_path(training_day)
+        td = link_to 'Destroy', training_day, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Training day', new_training_day_path

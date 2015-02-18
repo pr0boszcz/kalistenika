@@ -1,0 +1,13 @@
+p#notice
+  = notice
+p
+  strong
+    | Name:
+  = @training.name
+p
+  strong
+    | Level:
+  = @training.level
+= link_to 'Edit', edit_training_path(@training)
+|  | 
+= link_to 'Back', trainings_path

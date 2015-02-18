@@ -1,0 +1,25 @@
+h1
+  | Listing exercises_groups
+table
+  thead
+    tr
+      th
+        | Name
+      th
+        | Description
+      th[colspan="3"]
+  tbody
+    - @exercises_groups.each do |exercises_group|
+      tr
+        td
+          = exercises_group.name
+        td
+          = exercises_group.description
+        td
+          = link_to 'Show', exercises_group
+        td
+          = link_to 'Edit', edit_exercises_group_path(exercises_group)
+        td
+          = link_to 'Destroy', exercises_group, method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'New Exercises group', new_exercises_group_path

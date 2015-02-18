@@ -1,0 +1,20 @@
+= form_for(@series) do |f|
+  - if @series.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@series.errors.count, "error")
+        |  prohibited this series from being saved:
+      ul
+        - @series.errors.full_messages.each do |message|
+          li
+            = message
+  .field
+    = f.label :repeats
+    br
+    = f.number_field :repeats
+  .field
+    = f.label :exercise
+    br
+    = f.collection_select(:exercise_id, Exercise.all, :id, :name)
+  .actions
+    = f.submit

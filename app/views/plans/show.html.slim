@@ -1,0 +1,18 @@
+p#notice
+  = notice
+p
+  strong
+    | Name:
+  = @plan.name
+  p
+    - @plan.trainings.each do |training|
+      p
+        = "Czas przerwy: #{training.pause}"
+      ul
+        = "#{training.name}"
+        - training.series.each do |serie|
+          li
+            = "#{serie.exercise.name} (#{serie.repeats})"
+= link_to 'Edit', edit_plan_path(@plan)
+|  | 
+= link_to 'Back', plans_path
