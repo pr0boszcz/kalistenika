@@ -35,5 +35,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  # Middleware for reloading assets live.
+  config.middleware.use(Rack::LiveReload,
+      :min_delay        => 500,    # default 1000
+      :max_delay        => 1000
+    )
 
 end

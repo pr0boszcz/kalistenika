@@ -6,10 +6,6 @@ p
   = @series.repeats
 p
   strong
-    | Pause:
-/  = @series.pause
-p
-  strong
     | Exercises:
   =< @series.exercise.name
 = link_to 'Edit', edit_serie_path(@series)

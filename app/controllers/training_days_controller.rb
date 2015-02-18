@@ -1,6 +1,6 @@
 class TrainingDaysController < ApplicationController
   before_action :set_training_day, only: [:show, :edit, :update, :destroy]
-
+  respond_to :html, :json
   def index
     @training_days = TrainingDay.all
     respond_with(@training_days)

@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217175230) do
+ActiveRecord::Schema.define(version: 20150218173756) do
+
+  create_table "exercise_exercises_group", id: false, force: true do |t|
+    t.integer "exercise_id"
+    t.integer "exercises_group_id"
+  end
 
   create_table "exercises", force: true do |t|
     t.string   "name"
@@ -66,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150217175230) do
     t.integer  "plan_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "is_done",     default: 0
   end
 
   create_table "trainings", force: true do |t|

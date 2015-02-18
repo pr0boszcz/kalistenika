@@ -4,7 +4,7 @@ class ExercisesController < ApplicationController
   # GET /exercises
   # GET /exercises.json
   def index
-    @exercises = Exercise.all.sort_by { |x| x.name}
+    @exercises = Exercise.all.sort_by(&:name)
   end
 
   # GET /exercises/1
@@ -24,7 +24,7 @@ class ExercisesController < ApplicationController
   # POST /exercises
   # POST /exercises.json
   def create
-    @exercises = Exercise.all
+    #@exercises = Exercise.all
     @exercise = Exercise.new(exercise_params)
 
     respond_to do |format|

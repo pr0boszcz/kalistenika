@@ -1,35 +1,37 @@
 p
   | Cześć!
-p class="list" id="exercises"
-  = link_to "Ćwiczenia:", exercises_path
+#lists
+  .list#exercises
+    = link_to "Ćwiczenia:", exercises_path
+    ul
+    - @exercises.each do |ex|
+      li= link_to ex.name, exercise_path(ex)
+  .list#trainings
+    = link_to "Treningi:", trainings_path
+    ul
+      - @trainings.each do |tr|
+        li= link_to tr.name, training_path(tr)
+  .list#series
+    = link_to "Serie:", series_path
+    ul
+      - @series.each do |ser|
+        li #{ser.repeats} #{link_to ser.exercise.name, serie_path(ser)} 
+  .list#plans
+    = link_to "Plany treningowe:", plans_path
+    ul
+      - @plans.each do |pl|
+        li
+          = link_to pl.name, plan_path(pl)
+          ul
+            -pl.training_days.each do |td|
+              li 
+                |#{td.date} -> #{td.training.name}
+                ul
+                  - td.training.series.each do |ser|
+                    li #{ser.exercise.name} (#{ser.repeats})
+
+#exercises_group
+  = link_to 'Exercises Groups', exercises_groups_path
   ul
-  - @exercises.each do |ex|
-    li
-      = link_to(ex.name, exercise_path(ex))
-p class="list" id="trainings"
-  = link_to "Treningi:", trainings_path
-  ul
-  - @trainings.each do |tr|
-    li
-      = link_to(tr.name, training_path(tr))
-p class="list" id="series"
-  = link_to "Serie:", series_path
-  ul
-  - @series.each do |ser|
-    li
-      = ser.repeats
-      =< link_to(ser.exercise.name, serie_path(ser))
-hr
-p class="list" id="plans"
-  = link_to "Plany treningowe:", plans_path
-  ul
-  - @plans.each do |pl|
-    li
-      = link_to(pl.name, plan_path(pl))
-      ul
-        - pl.training_days.each do |td|
-          li
-            | #{td.date} -> #{td.training.name}
-            ul
-              - td.training.series.each do |ser|
-                li #{ser.exercise.name} (#{ser.repeats})
+    -@exgroups.each do |eg|
+      li= link_to eg.name, exercises_group_path(eg)
