@@ -7,6 +7,10 @@ table
         | Name
       th
         | Level
+      th
+        | Series
+      th
+        | Pause(s)
       th[colspan="3"]
   tbody
     - @trainings.each do |training|
@@ -15,6 +19,12 @@ table
           = training.name
         td
           = training.level
+        td
+          - training.series.each do |ser|
+            li
+              | #{ser.exercise.name} (#{ser.repeats})
+        td
+          = training.pause
         td
           = link_to 'Show', training
         td

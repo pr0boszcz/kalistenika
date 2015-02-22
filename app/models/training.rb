@@ -3,4 +3,6 @@ class Training < ActiveRecord::Base
   has_many :training_days
   has_many :plans, through: :training_days
 	has_many :exercises, through: :series
+  validates :name, presence: true
+  accepts_nested_attributes_for :series
 end

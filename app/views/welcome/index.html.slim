@@ -2,36 +2,39 @@ p
   | Cześć!
 #lists
   .list#exercises
-    = link_to "Ćwiczenia:", exercises_path
+    strong= link_to "Exercises:", exercises_path
     ul
     - @exercises.each do |ex|
-      li= link_to ex.name, exercise_path(ex)
+      .exercise.elem [draggable: true]= link_to ex.name, exercise_path(ex)
   .list#trainings
-    = link_to "Treningi:", trainings_path
+    strong= link_to "Trainings:", trainings_path
     ul
       - @trainings.each do |tr|
-        li= link_to tr.name, training_path(tr)
+        .training.elem= link_to tr.name, training_path(tr)
   .list#series
-    = link_to "Serie:", series_path
+    strong= link_to "Series:", series_path
     ul
       - @series.each do |ser|
-        li #{ser.repeats} #{link_to ser.exercise.name, serie_path(ser)} 
+        .series.elem #{ser.repeats} #{link_to ser.exercise.name, serie_path(ser)}
   .list#plans
-    = link_to "Plany treningowe:", plans_path
+    strong= link_to "Trainings harmonograms:", plans_path
     ul
       - @plans.each do |pl|
         li
           = link_to pl.name, plan_path(pl)
           ul
             -pl.training_days.each do |td|
-              li 
-                |#{td.date} -> #{td.training.name}
+              li
+                | #{td.date} -> #{td.training.name}
+                strong
+                  | Pause:
+                | #{td.training.pause}s
                 ul
                   - td.training.series.each do |ser|
                     li #{ser.exercise.name} (#{ser.repeats})
 
 #exercises_group
-  = link_to 'Exercises Groups', exercises_groups_path
+  strong= link_to 'Exercises Groups', exercises_groups_path
   ul
     -@exgroups.each do |eg|
       li= link_to eg.name, exercises_group_path(eg)

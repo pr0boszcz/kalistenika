@@ -15,6 +15,6 @@
   .field
     = f.label :exercise
     br
-    = f.collection_select(:exercise_id, Exercise.all, :id, :name)
+    = f.collection_select(:exercise_id, Exercise.all.sort_by(&:name), :id, :name)
   .actions
     = f.submit
