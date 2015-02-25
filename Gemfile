@@ -45,3 +45,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Lineman integration
+gem 'rails-lineman'
+gem 'angular_rails_csrf'
+
