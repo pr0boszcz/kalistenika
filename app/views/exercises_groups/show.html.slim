@@ -8,6 +8,12 @@ p
   strong
     | Description:
   = @exercises_group.description
+p
+  strong
+    | Exercises:
+  - @exercises_group.exercises.each do |ex|
+    li= link_to ex.name, exercise_path(ex)
+
 = link_to 'Edit', edit_exercises_group_path(@exercises_group)
 |  | 
 = link_to 'Back', exercises_groups_path
