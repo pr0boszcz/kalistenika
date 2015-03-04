@@ -1,0 +1,11 @@
+= fields_for series do |f|
+  .field
+    = f.label :repeats
+    br
+    = f.number_field :repeats
+  .field
+    = f.label :exercise
+    br
+    = f.collection_select(:exercise_id, Exercise.all.sort_by(&:name), :id, :name)
+  .actions
+   / = f.submit

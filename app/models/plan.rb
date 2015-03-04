@@ -3,4 +3,5 @@ class Plan < ActiveRecord::Base
   has_many :training_days, dependent: :destroy
   #accepts_nested_attributes_for :training_days
 	belongs_to :user
+  validates :name, presence: true
 end

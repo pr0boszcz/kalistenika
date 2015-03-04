@@ -1,5 +1,6 @@
 class TrainingsController < ApplicationController
-  respond_to :html, :json
+
+  respond_to :json, :html
   before_action :set_training, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,7 +21,10 @@ class TrainingsController < ApplicationController
   end
 
   def create
-    @training = Training.new(training_params)
+    @training = Training.new(name: params[:training][:name], pause: params[:training][:pause])
+    params[:training][:series_attributes].each do |serie|
+      @training.series << Serie.where(repeats: serie[:repeats], exercise_id: serie[:exercise_id]).first_or_create
+    end
     @training.save
     respond_with(@training)
   end
@@ -41,6 +45,7 @@ class TrainingsController < ApplicationController
     end
 
     def training_params
-      params.require(:training).permit(:name, :days, :level)
+      params.require(:training).permit(:name, :level, :pause, series_attributes: [:repeats, :exercise_id])
     end
+
 end

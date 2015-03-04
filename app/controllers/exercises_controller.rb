@@ -1,11 +1,13 @@
 class ExercisesController < ApplicationController
-  before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  #before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  before_action :all_exercises, only: [:index, :create, :destroy]
+  respond_to :html, :json, :js
 
   # GET /exercises
   # GET /exercises.json
-  def index
-    @exercises = Exercise.all.sort_by(&:name)
-  end
+  #def index
+  #  @exercises = Exercise.all.sort_by(&:name)
+  #end
 
   # GET /exercises/1
   # GET /exercises/1.json
@@ -64,6 +66,10 @@ class ExercisesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def all_exercises
+      @exercises = Exercise.all.sort_by(&:name)
+    end
+
     def set_exercise
       @exercise = Exercise.find(params[:id])
     end

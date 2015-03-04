@@ -16,5 +16,12 @@
     = f.label :level
     br
     = f.text_field :level
+  .field
+    = f.label :pause
+    br
+    = f.number_field :pause
+
+  .field.training_series
+    = render partial: 'add_serie', collection: @training.series, locals: {series: @training.series}
   .actions
     = f.submit

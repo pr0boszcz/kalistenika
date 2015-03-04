@@ -1,5 +1,6 @@
 class SeriesController < ApplicationController
   before_action :set_series, only: [:show, :edit, :update, :destroy]
+
   respond_to :html, :json
   # GET /series
   # GET /series.json
@@ -26,10 +27,12 @@ class SeriesController < ApplicationController
   # POST /series.json
   def create
     @series = Serie.new(series_params)
+    @series.save
+    #@series.exercise.create(exercise_attributes)
 
     respond_to do |format|
       if @series.save
-        format.html { redirect_to @series, notice: 'Serie was successfully created.' }
+        format.html { redirect_to series_url, notice: 'Serie was successfully created.' }
         format.json { render :show, status: :created, location: @series }
       else
         format.html { render :new }
@@ -43,7 +46,7 @@ class SeriesController < ApplicationController
   def update
     respond_to do |format|
       if @series.update(series_params)
-        format.html { redirect_to @series, notice: 'Serie was successfully updated.' }
+        format.html { redirect_to series_url, notice: 'Serie was successfully updated.' }
         format.json { render :show, status: :ok, location: @series }
       else
         format.html { render :edit }
@@ -70,6 +73,6 @@ class SeriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def series_params
-      params.require(:serie).permit(:repeats, :exercise_id, :user_id)
+      params.require(:serie).permit(:repeats, :exercise_id, :user_id, exercise_attributes:[:name, :description])
     end
 end

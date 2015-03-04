@@ -24,4 +24,6 @@ table
         td
           = link_to 'Destroy', exercise, method: :delete, data: { confirm: 'Are you sure?' }
 br
-= link_to 'New Exercise', new_exercise_path
+#exercise-form style="display:none;"
+
+= link_to 'New Exercise', new_exercise_path, remote: true
