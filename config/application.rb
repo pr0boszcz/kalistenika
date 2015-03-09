@@ -21,5 +21,6 @@ module Kalistenika
     # config.i18n.default_locale = :pl
     config.sass.preferred_syntax = :sass
     config.sass.cache = false
+    config.rails_lineman.lineman_project_location = "../kalistenika-frontend"
   end
 end

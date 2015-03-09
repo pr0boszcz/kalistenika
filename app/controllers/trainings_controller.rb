@@ -6,10 +6,20 @@ class TrainingsController < ApplicationController
   def index
     @trainings = Training.all
     respond_with(@trainings)
+
+
   end
 
   def show
-    respond_with(@training)
+    #respond_with(@training)
+    respond_to do |format|
+      format.html { render html: @training}
+      format.json { render json: @training, include: {
+        series: {only: [:repeats, :exercise_id], include:{
+          exercise: {only: :name}
+        }}
+        }}
+    end
   end
 
   def new
@@ -31,6 +41,10 @@ class TrainingsController < ApplicationController
 
   def update
     @training.update(training_params)
+    @training.series = []
+    params[:series_attributes].each do |serie|
+      @training.series << Serie.where(repeats: serie[:repeats], exercise_id: serie[:exercise_id]).first_or_create
+    end
     respond_with(@training)
   end
 

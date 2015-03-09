@@ -3,11 +3,15 @@ html
   head
     title
       | Kalistenika
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'lineman/app'
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
+    = javascript_include_tag 'lineman/app'
     = csrf_meta_tags
-  body
-    = render "layouts/header"
-    #main_container
-      = yield
-    = render "layouts/footer"
+  body{ng-app="app"}
+    #view{ng-view}
+
+    /= render "layouts/header"
+    /#main_container{id="view" ng-view}
+    /  = yield
+    /= render "layouts/footer"
